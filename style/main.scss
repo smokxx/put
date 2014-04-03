@@ -107,11 +107,11 @@ h1.title {
 }
 
 .score-container:after {
-  content: "Score";
+  content: "Очки";
 }
 
 .best-container:after {
-  content: "Best"
+  content: "Рекорд"
 }
 
 p {
@@ -317,7 +317,7 @@ hr {
   .tile-inner {
     border-radius: $tile-border-radius;
 
-    background: $tile-color;
+    background-size: contain;
     text-align: center;
     font-weight: bold;
     z-index: 10;
@@ -362,16 +362,11 @@ hr {
       $special-background: nth($nth-color, 1);
       $bright-color: nth($nth-color, 2);
 
-      @if $special-background {
-        $mixed-background: mix($special-background, $mixed-background, 55%);
-      }
+      background-image: url('/images/tile-#{$power}.jpg');
 
       @if $bright-color {
         color: $bright-text-color;
       }
-
-      // Set background
-      background: $mixed-background;
 
       // Add glow
       $glow-opacity: max($exponent - 4, 0) / ($limit - 4);
