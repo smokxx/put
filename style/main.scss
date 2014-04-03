@@ -444,7 +444,7 @@ hr {
       $special-background: nth($nth-color, 1);
       $bright-color: nth($nth-color, 2);
 
-      background-image: url('/images/tile-#{$power}.jpg');
+      background-image: url('../images/tile-#{$power}.jpg');
 
       @if $bright-color {
         color: $bright-text-color;
