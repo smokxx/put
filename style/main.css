@@ -449,6 +449,10 @@ hr {
 .legend-tile-4096 {
   background-image: url("../images/tile-4096.jpg"); }
 
+body:after {
+  content: url("../images/tile-2.jpg") url("../images/tile-4.jpg") url("../images/tile-8.jpg") url("../images/tile-16.jpg") url("../images/tile-32.jpg") url("../images/tile-64.jpg") url("../images/tile-128.jpg") url("../images/tile-256.jpg") url("../images/tile-512.jpg") url("../images/tile-1024.jpg") url("../images/tile-2048.jpg") url("../images/tile-4096.jpg") ;
+  display: none; }
+
 .tile {
   position: absolute;
   -webkit-transition: 100ms ease-in-out;
