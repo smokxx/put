@@ -16,6 +16,7 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 // Restart the game
 GameManager.prototype.restart = function () {
   this.storageManager.clearGameState();
+  this.actuator.resetLegend();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup();
 };
@@ -164,7 +165,7 @@ GameManager.prototype.move = function (direction) {
           self.grid.insertTile(merged);
           self.grid.removeTile(tile);
 
-          // Converge the two tiles' positions
+          // Converge the two tiles positions
           tile.updatePosition(positions.next);
 
           // Update the score
