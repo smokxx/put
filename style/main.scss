@@ -359,12 +359,21 @@ hr {
 $base: 2;
 $exponent: 1;
 $limit: 12;
+$all_image_urls: "";
 @while $exponent <= $limit {
   $power: pow($base, $exponent);
+  $image: url('../images/tile-#{$power}.jpg');
   .legend-tile-#{$power} {
-    background-image: url('../images/tile-#{$power}.jpg');
+    background-image: $image;
   }
   $exponent: $exponent + 1;
+  $all_image_urls: $all_image_urls + $image + " ";
+}
+
+// Preload images.
+body:after {
+  content: #{$all_image_urls};
+  display: none;
 }
 
 .tile {
