@@ -6,7 +6,40 @@ function HTMLActuator() {
   this.sharingContainer = document.querySelector(".score-sharing");
 
   this.score = 0;
+  this.legend = document.querySelector(".legend");
+  this.resetLegend();
 }
+
+HTMLActuator.prototype.resetLegend = function () {
+  this.tileRevealed = 1;
+  this.legendTileWhat = document.createElement('div');
+  this.legendTileWhat.setAttribute('class', 'legend-tile legend-tile-what');
+  this.legendTileWhat.innerHTML = '?';
+  this.legend.innerHTML = '';
+  this.legend.appendChild(this.legendTileWhat);
+  this.revealLegend(4);
+};
+
+HTMLActuator.prototype.revealLegend = function (value) {
+  if (this.tileRevealed >= value || value > 4096) {
+   return;
+  }
+  for (var i = this.tileRevealed * 2; i <= value; i *= 2) {
+    var legendTile = document.createElement('div');
+    legendTile.setAttribute('class', 'legend-tile legend-tile-' + i);
+    this.legend.insertBefore(legendTile, this.legendTileWhat);
+    var arrow = document.createElement('div');
+    if (i < 4096) {
+      arrow.setAttribute('class', 'arrow-right');
+      this.legend.insertBefore(arrow, this.legendTileWhat);
+    }
+  }
+  if (value == 4096 && this.legendTileWhat) {
+    this.legend.removeChild(this.legendTileWhat);
+    this.legendTileWhat = null;
+  }
+  this.tileRevealed = value;
+};
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
   var self = this;
@@ -59,10 +92,11 @@ HTMLActuator.prototype.addTile = function (tile) {
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
   var positionClass = this.positionClass(position);
 
-  // We can't use classlist because it somehow glitches when replacing classes
+  // We cannot use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
+  this.revealLegend(tile.value);
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > 4096) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 

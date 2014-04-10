@@ -1,4 +1,4 @@
-@charset "IBM437";
+@charset "UTF-8";
 @import url(fonts/clear-sans.css);
 html, body {
   margin: 0;
@@ -377,6 +377,78 @@ hr {
   -moz-transform: translate(363px, 363px);
   transform: translate(363px, 363px); }
 
+.legend-tile {
+  width: 50px;
+  height: 50px; }
+
+.legend-tile-what {
+  font-size: 3.1em; }
+
+.arrow-right {
+  top: -16.66667px;
+  border-top: 8.33333px solid transparent;
+  border-bottom: 8.33333px solid transparent;
+  border-left: 8.33333px solid #776e65;
+  margin-right: 5px; }
+
+.legend {
+  padding: 10px;
+  margin-top: 15px; }
+
+.legend-tile-container {
+  display: inline-block; }
+
+.legend-tile {
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain; }
+
+.legend-tile-what {
+  vertical-align: top;
+  text-align: center; }
+
+.arrow-right {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0; }
+
+.legend-tile-2 {
+  background-image: url("../images/tile-2.jpg"); }
+
+.legend-tile-4 {
+  background-image: url("../images/tile-4.jpg"); }
+
+.legend-tile-8 {
+  background-image: url("../images/tile-8.jpg"); }
+
+.legend-tile-16 {
+  background-image: url("../images/tile-16.jpg"); }
+
+.legend-tile-32 {
+  background-image: url("../images/tile-32.jpg"); }
+
+.legend-tile-64 {
+  background-image: url("../images/tile-64.jpg"); }
+
+.legend-tile-128 {
+  background-image: url("../images/tile-128.jpg"); }
+
+.legend-tile-256 {
+  background-image: url("../images/tile-256.jpg"); }
+
+.legend-tile-512 {
+  background-image: url("../images/tile-512.jpg"); }
+
+.legend-tile-1024 {
+  background-image: url("../images/tile-1024.jpg"); }
+
+.legend-tile-2048 {
+  background-image: url("../images/tile-2048.jpg"); }
+
+.legend-tile-4096 {
+  background-image: url("../images/tile-4096.jpg"); }
+
 .tile {
   position: absolute;
   -webkit-transition: 100ms ease-in-out;
@@ -413,7 +485,7 @@ hr {
   .tile.tile-128 .tile-inner {
     background-image: url("../images/tile-128.jpg");
     color: #f9f6f2;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.2381), inset 0 0 0 1px rgba(255, 255, 255, 0.14286);
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.20833), inset 0 0 0 1px rgba(255, 255, 255, 0.125);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
       .tile.tile-128 .tile-inner {
@@ -421,7 +493,7 @@ hr {
   .tile.tile-256 .tile-inner {
     background-image: url("../images/tile-256.jpg");
     color: #f9f6f2;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.31746), inset 0 0 0 1px rgba(255, 255, 255, 0.19048);
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.27778), inset 0 0 0 1px rgba(255, 255, 255, 0.16667);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
       .tile.tile-256 .tile-inner {
@@ -429,7 +501,7 @@ hr {
   .tile.tile-512 .tile-inner {
     background-image: url("../images/tile-512.jpg");
     color: #f9f6f2;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.39683), inset 0 0 0 1px rgba(255, 255, 255, 0.2381);
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.34722), inset 0 0 0 1px rgba(255, 255, 255, 0.20833);
     font-size: 45px; }
     @media screen and (max-width: 520px) {
       .tile.tile-512 .tile-inner {
@@ -437,7 +509,7 @@ hr {
   .tile.tile-1024 .tile-inner {
     background-image: url("../images/tile-1024.jpg");
     color: #f9f6f2;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.47619), inset 0 0 0 1px rgba(255, 255, 255, 0.28571);
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.41667), inset 0 0 0 1px rgba(255, 255, 255, 0.25);
     font-size: 35px; }
     @media screen and (max-width: 520px) {
       .tile.tile-1024 .tile-inner {
@@ -445,10 +517,18 @@ hr {
   .tile.tile-2048 .tile-inner {
     background-image: url("../images/tile-2048.jpg");
     color: #f9f6f2;
-    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.48611), inset 0 0 0 1px rgba(255, 255, 255, 0.29167);
     font-size: 35px; }
     @media screen and (max-width: 520px) {
       .tile.tile-2048 .tile-inner {
+        font-size: 15px; } }
+  .tile.tile-4096 .tile-inner {
+    background-image: url("../images/tile-4096.jpg");
+    color: #f9f6f2;
+    box-shadow: 0 0 30px 10px rgba(243, 215, 116, 0.55556), inset 0 0 0 1px rgba(255, 255, 255, 0.33333);
+    font-size: 35px; }
+    @media screen and (max-width: 520px) {
+      .tile.tile-4096 .tile-inner {
         font-size: 15px; } }
   .tile.tile-super .tile-inner {
     color: #f9f6f2;
@@ -815,6 +895,20 @@ hr {
     -webkit-transform: translate(202px, 202px);
     -moz-transform: translate(202px, 202px);
     transform: translate(202px, 202px); }
+
+  .legend-tile {
+    width: 25px;
+    height: 25px; }
+
+  .legend-tile-what {
+    font-size: 1.7em; }
+
+  .arrow-right {
+    top: -8.33333px;
+    border-top: 4.16667px solid transparent;
+    border-bottom: 4.16667px solid transparent;
+    border-left: 4.16667px solid #776e65;
+    margin-right: 2.5px; }
 
   .tile .tile-inner {
     font-size: 35px; }

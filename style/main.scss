@@ -1,10 +1,13 @@
 @import "helpers";
 @import "fonts/clear-sans.css";
+@charset "utf-8";
 
 $field-width: 500px;
 $grid-spacing: 15px;
 $grid-row-cells: 4;
 $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+$legend-size: 50px;
+$font-size: 3.1em;
 $tile-border-radius: 3px;
 
 $mobile-threshold: $field-width + 20px;
@@ -388,10 +391,63 @@ hr {
       }
     }
   }
+
+  .legend-tile {
+    width: $legend-size;
+    height: $legend-size;
+  }
+  .legend-tile-what {
+    font-size: $font-size;
+  }
+  .arrow-right {
+    top: - $legend-size / 3;
+    border-top: $legend-size / 6 solid transparent;
+    border-bottom: $legend-size / 6 solid transparent;
+    border-left: $legend-size / 6 solid $text-color;
+    margin-right: $legend-size / 10;
+  }
 }
 
 // End of game-field mixin
 @include game-field;
+
+.legend {
+  padding: 10px;
+  margin-top: 15px;
+}
+
+.legend-tile-container {
+  display: inline-block;
+}
+
+.legend-tile {
+  display: inline-block;
+  margin-right: 5px;
+  background-size: contain;
+}
+
+.legend-tile-what {
+  vertical-align: top;
+  text-align: center;
+}
+
+.arrow-right {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+$base: 2;
+$exponent: 1;
+$limit: 12;
+@while $exponent <= $limit {
+  $power: pow($base, $exponent);
+  .legend-tile-#{$power} {
+    background-image: url('../images/tile-#{$power}.jpg');
+  }
+  $exponent: $exponent + 1;
+}
 
 .tile {
   position: absolute; // Makes transforms relative to the top-left corner
@@ -415,7 +471,7 @@ hr {
 
   $base: 2;
   $exponent: 1;
-  $limit: 11;
+  $limit: 12;
 
   // Colors for all 11 states, false = no special color
   $special-colors: false false, // 2
@@ -428,7 +484,8 @@ hr {
                    false true, // 256
                    false true, // 512
                    false true, // 1024
-                   false true; // 2048
+                   false true, // 2048
+                   false true; // 4096
 
   // Build tile colors
   @while $exponent <= $limit {
@@ -478,7 +535,7 @@ hr {
     $exponent: $exponent + 1;
   }
 
-  // Super tiles (above 2048)
+  // Super tiles (above 4096)
   &.tile-super .tile-inner {
     color: $bright-text-color;
     background: mix(#333, $tile-gold-color, 95%);
@@ -565,6 +622,8 @@ hr {
   $grid-spacing: 10px;
   $grid-row-cells: 4;
   $tile-size: ($field-width - $grid-spacing * ($grid-row-cells + 1)) / $grid-row-cells;
+  $legend-size: 25px;
+  $font-size: 1.7em;
   $tile-border-radius: 3px;
   $game-container-margin-top: 17px;
 
