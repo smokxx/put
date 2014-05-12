@@ -440,7 +440,7 @@ hr {
 
 $base: 2;
 $exponent: 1;
-$limit: 12;
+$limit: 13;
 $all_image_urls: "";
 @while $exponent <= $limit {
   $power: pow($base, $exponent);
@@ -480,7 +480,7 @@ body:after {
 
   $base: 2;
   $exponent: 1;
-  $limit: 12;
+  $limit: 13;
 
   // Colors for all 11 states, false = no special color
   $special-colors: false false, // 2
@@ -494,7 +494,8 @@ body:after {
                    false true, // 512
                    false true, // 1024
                    false true, // 2048
-                   false true; // 4096
+                   false true, // 4096
+                   false true; // 8192
 
   // Build tile colors
   @while $exponent <= $limit {
@@ -544,7 +545,7 @@ body:after {
     $exponent: $exponent + 1;
   }
 
-  // Super tiles (above 4096)
+  // Super tiles (above 8192)
   &.tile-super .tile-inner {
     color: $bright-text-color;
     background: mix(#333, $tile-gold-color, 95%);
