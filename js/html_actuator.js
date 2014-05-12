@@ -1,3 +1,21 @@
+var legendLinks = {
+  2: 'http://lurkmore.to/%D0%92%D0%B0%D1%82%D0%BD%D0%B8%D0%BA',
+  4: 'http://lurkmore.to/%D0%9A%D0%B0%D0%B7%D0%B0%D1%87%D0%B5%D1%81%D1%82%D0%B2%D0%BE#.D0.92_.D0.BD.D0.B0.D1.88.D0.B5_.D0.B2.D1.80.D0.B5.D0.BC.D1.8F',
+  8: 'http://lurkmore.to/%D0%92%D0%B8%D1%82%D0%B0%D0%BB%D0%B8%D0%B9_%D0%9C%D0%B8%D0%BB%D0%BE%D0%BD%D0%BE%D0%B2',
+  16: 'http://lurkmore.to/%D0%9C%D0%B8%D0%B7%D1%83%D0%BB%D0%B8%D0%BD%D0%B0',
+  32: 'http://lurkmore.to/%D0%9F%D0%B5%D1%85%D1%82%D0%B8%D0%BD%D0%B3',
+  64: 'http://lurkmore.to/%D0%AF%D0%BA%D1%83%D0%BD%D0%B8%D0%BD#.D0.AF.D0.BA.D1.83.D0.BD.D0.B8.D0.BD',
+  128: 'http://lurkmore.to/%D0%9A%D0%B8%D1%81%D0%B5%D0%BB%D0%B5%D0%B2',
+  256: 'http://navalny.livejournal.com/822868.html',
+  512: 'http://lurkmore.to/%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3#.D0.9C.D0.B0.D1.82.D0.B2.D0.B8.D0.B5.D0.BD.D0.BA.D0.BE',
+  1024: 'http://lurkmore.to/%D0%9C%D0%B5%D0%B4%D0%B2%D0%B5%D0%B4%D0%B5%D0%B2',
+  2048: 'http://lurkmore.to/%D0%9F%D1%83%D1%82%D0%B8%D0%BD',
+  4096: 'http://lurkmore.to/%D0%A1%D1%82%D0%B0%D0%BB%D0%B8%D0%BD',
+  8192: 'http://www.youtube.com/watch?v=aA_8iWIpO1A'
+};
+
+var MAX_VALUE = 8192;
+
 function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
@@ -20,20 +38,23 @@ HTMLActuator.prototype.resetLegend = function () {
 };
 
 HTMLActuator.prototype.revealLegend = function (value) {
-  if (this.tileRevealed >= value || value > 4096) {
+  if (this.tileRevealed >= value || value > MAX_VALUE) {
    return;
   }
   for (var i = this.tileRevealed * 2; i <= value; i *= 2) {
+    var legendLink = document.createElement('a');
+    legendLink.href = legendLinks[i];
     var legendTile = document.createElement('div');
+    legendLink.appendChild(legendTile);
     legendTile.setAttribute('class', 'legend-tile legend-tile-' + i);
-    this.legend.insertBefore(legendTile, this.legendTileWhat);
+    this.legend.insertBefore(legendLink, this.legendTileWhat);
     var arrow = document.createElement('div');
-    if (i < 4096) {
+    if (i < MAX_VALUE) {
       arrow.setAttribute('class', 'arrow-right');
       this.legend.insertBefore(arrow, this.legendTileWhat);
     }
   }
-  if (value == 4096 && this.legendTileWhat) {
+  if (value == MAX_VALUE && this.legendTileWhat) {
     this.legend.removeChild(this.legendTileWhat);
     this.legendTileWhat = null;
   }
@@ -91,12 +112,14 @@ HTMLActuator.prototype.addTile = function (tile) {
   var classes = ["tile", "tile-" + tile.value, positionClass];
   this.revealLegend(tile.value);
 
-  if (tile.value > 4096) classes.push("tile-super");
+  if (tile.value > MAX_VALUE) {
+    inner.textContent = tile.value;
+    classes.push("tile-super");
+  }
 
   this.applyClasses(wrapper, classes);
 
   inner.classList.add("tile-inner");
-  // inner.textContent = tile.value;
 
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
